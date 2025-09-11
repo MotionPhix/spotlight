@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__laravel-boost__application-info",
+      "mcp__laravel-boost__get-absolute-url",
+      "mcp__laravel-boost__list-artisan-commands",
+      "Bash(php artisan make:migration:*)",
+      "mcp__laravel-boost__read-log-entries"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost",
+    "herd"
+  ]
+}
