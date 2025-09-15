@@ -3,9 +3,9 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="h-screen overflow-hidden bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <div class="relative grid h-dvh lg:grid-cols-2 min-w-0">
-            <div class="bg-muted relative hidden h-full flex-col p-6 lg:p-10 text-white lg:flex dark:border-e dark:border-neutral-800 min-w-0">
+    <body class="inset-0 overflow-hidden bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
+        <div class="relative grid inset-0 lg:grid-cols-2 min-w-0">
+            <div class="bg-muted relative hidden flex-col p-6 lg:p-10 text-white lg:flex dark:border-e dark:border-neutral-800 min-w-0">
                 <div class="absolute inset-0 bg-neutral-900"></div>
                 <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
                     <span class="flex h-10 w-10 items-center justify-center rounded-md">
@@ -25,6 +25,7 @@
                     </blockquote>
                 </div>
             </div>
+
             <div class="w-full h-full overflow-y-auto overflow-x-hidden min-w-0">
                 <div class="flex items-center justify-center min-h-full px-4 py-8 sm:px-6 lg:px-8">
                     <div class="w-full max-w-lg space-y-6 min-w-0">

@@ -5,10 +5,10 @@
     </head>
     <body class="min-h-screen bg-white antialiased dark:bg-gradient-to-b dark:from-neutral-950 dark:to-neutral-900">
         <!-- Mobile-first responsive layout -->
-        <div class="min-h-screen flex flex-col lg:flex-row">
+        <div class="h-screen flex flex-col lg:flex-row overflow-hidden">
             
             <!-- Left Panel - Hidden on mobile, visible on desktop -->
-            <div class="hidden lg:flex lg:w-1/2 xl:w-2/5 relative bg-neutral-900 text-white">
+            <div class="hidden lg:flex lg:w-1/2 xl:w-2/5 relative bg-neutral-900 text-white overflow-y-auto">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-700 opacity-90"></div>
                 <div class="relative z-10 flex flex-col justify-between p-8 xl:p-12">
                     
@@ -61,7 +61,7 @@
             </div>
 
             <!-- Right Panel - Full width on mobile, half width on desktop -->
-            <div class="flex-1 lg:w-1/2 xl:w-3/5 w-full min-w-0">
+            <div class="flex-1 lg:w-1/2 xl:w-3/5 w-full min-w-0 h-full overflow-y-auto">
                 <div class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8 w-full">
                     <div class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl space-y-6 min-w-0">
                         

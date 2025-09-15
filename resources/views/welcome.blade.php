@@ -84,7 +84,7 @@
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#register" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-center transition-colors">
-                                Register Now - MWK 300,000
+                                Join Us
                             </a>
                             <a href="#program" class="border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 px-8 py-4 rounded-lg font-semibold text-center transition-colors">
                                 Learn More
@@ -397,12 +397,14 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="{{ route('register') }}" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-block">
-                        Register Now - MWK 300,000
+                        Register Now
                     </a>
-                    <div class="text-blue-200">
-                        <p class="text-sm">✓ 6 months comprehensive training</p>
-                        <p class="text-sm">✓ Professional equipment access</p>
-                        <p class="text-sm">✓ Industry-standard certification</p>
+                    <div class="text-blue-200 text-left">
+                        <ul>
+                            <li class="text-sm">✓ 6 months comprehensive training</li>
+                            <li class="text-sm">✓ Professional equipment access</li>
+                            <li class="text-sm">✓ Industry-standard certification</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -417,11 +419,6 @@
                         <p class="text-gray-300 mb-4">
                             Empowering artisans with professional skills in graphic design, printing, and creative technologies through our comprehensive training program.
                         </p>
-                        <div class="text-gray-400">
-                            <p>Area 45, Chinsapo</p>
-                            <p>Opposite Tachira Pvt Clinic</p>
-                            <p>Lilongwe, Malawi</p>
-                        </div>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Training Areas</h4>
@@ -437,10 +434,23 @@
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
                         <div class="space-y-2 text-gray-300">
-                            <p>Program Fee: MWK 300,000</p>
-                            <p>Duration: 6 Months</p>
-                            <p>Format: Hands-on Training</p>
-                            <p>Contact within 24hrs after registration</p>
+                            <p>Area 45, Chinsapo</p>
+                            <p>Opposite Tachira Pvt Clinic</p>
+                            <p>Lilongwe, Malawi</p>
+
+                            <hr class="border-gray-700" />
+
+                            <a 
+                                href="tel:+265991850017"
+                                class="text-gray-500">
+                                +265 991 850 017
+                            </a>
+
+                            <a 
+                                href="mailto:sales@spotlight.ultrashots.net"
+                                class="text-gray-500">
+                                sales@spotlight.ultrashots.net
+                            </a>
                         </div>
                     </div>
                 </div>
