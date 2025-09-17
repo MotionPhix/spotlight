@@ -33,6 +33,7 @@ class User extends Authenticatable implements HasMedia
         'payment_reference',
         'registered_at',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -60,6 +61,7 @@ class User extends Authenticatable implements HasMedia
             'current_knowledge' => 'array',
             'amount_paid' => 'decimal:2',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -101,5 +103,13 @@ class User extends Authenticatable implements HasMedia
     public function isPaymentPending(): bool
     {
         return $this->registration_status === 'payment_pending';
+    }
+
+    /**
+     * Check if user is an admin
+     */
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 }

@@ -43,7 +43,7 @@ new #[Layout('components.layouts.checkout')] class extends Component {
 
             $paymentData = [
                 'tx_ref' => $txRef,
-                'amount' => 7000, // MWK 7,000 registration fee
+                'amount' => 5000, // MWK 5,000 registration fee
                 'currency' => 'MWK',
                 'email' => $this->user->email,
                 'phone_number' => $this->user->phone,
@@ -187,7 +187,7 @@ new #[Layout('components.layouts.checkout')] class extends Component {
                     <div class="space-y-4 mb-6">
                         <div class="grid">
                             <span class="text-gray-600 dark:text-gray-300">Registration Fee</span>
-                            <span class="font-medium text-gray-900 dark:text-white">MWK 7,000</span>
+                            <span class="font-medium text-gray-900 dark:text-white">MWK 5,000</span>
                         </div>
 
                         <div class="grid">
@@ -198,7 +198,7 @@ new #[Layout('components.layouts.checkout')] class extends Component {
                         <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
                             <div class="grid">
                                 <span class="text-lg font-semibold text-gray-900 dark:text-white">Total Due Now</span>
-                                <span class="text-lg font-bold text-blue-600 dark:text-blue-400">MWK 7,000</span>
+                                <span class="text-lg font-bold text-blue-600 dark:text-blue-400">MWK 5,000</span>
                             </div>
                         </div>
 

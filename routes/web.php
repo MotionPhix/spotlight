@@ -143,4 +143,13 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
+// Admin routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Volt::route('/', 'admin.dashboard')->name('dashboard');
+    Volt::route('users', 'admin.users.index')->name('users.index');
+    Volt::route('users/{user}', 'admin.users.show')->name('users.show');
+    Volt::route('notifications', 'admin.notifications.index')->name('notifications.index');
+    Volt::route('communications', 'admin.communications.index')->name('communications.index');
+});
+
 require __DIR__.'/auth.php';

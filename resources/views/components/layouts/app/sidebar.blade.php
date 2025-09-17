@@ -14,6 +14,9 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    @if(auth()->user()->isAdmin())
+                        <flux:navlist.item icon="cog-6-tooth" :href="route('admin.dashboard')" :current="request()->routeIs('admin.*')" wire:navigate>{{ __('Admin Panel') }}</flux:navlist.item>
+                    @endif
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -32,7 +35,7 @@
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
                 <flux:profile
-                    :name="auth()->user()->name"
+                    :name="auth()->user()->fullName()"
                     :initials="auth()->user()->initials()"
                     icon:trailing="chevrons-up-down"
                 />
@@ -50,7 +53,7 @@
                                 </span>
 
                                 <div class="grid flex-1 text-start text-sm leading-tight">
-                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                    <span class="truncate font-semibold">{{ auth()->user()->fullName() }}</span>
                                     <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                                 </div>
                             </div>
@@ -100,7 +103,7 @@
                                 </span>
 
                                 <div class="grid flex-1 text-start text-sm leading-tight">
-                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                    <span class="truncate font-semibold">{{ auth()->user()->fullName() }}</span>
                                     <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                                 </div>
                             </div>
@@ -127,6 +130,6 @@
 
         {{ $slot }}
 
-        @fluxScripts
+        
     </body>
 </html>
