@@ -87,17 +87,20 @@ new #[Layout('components.layouts.admin')] class extends Component {
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <x-bladewind::input
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Search Users</label>
+                    <input
                         wire:model.live.debounce.300ms="search"
+                        type="text"
                         placeholder="Search by name, email, or phone..."
-                        label="Search Users"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
 
                 <div>
-                    <x-bladewind::select
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Status</label>
+                    <select
                         wire:model.live="statusFilter"
-                        label="Filter by Status"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                         <option value="">All Statuses</option>
                         <option value="pending">Pending</option>
@@ -105,7 +108,7 @@ new #[Layout('components.layouts.admin')] class extends Component {
                         <option value="rejected">Rejected</option>
                         <option value="payment_pending">Payment Pending</option>
                         <option value="completed">Completed</option>
-                    </x-bladewind::select>
+                    </select>
                 </div>
             </div>
         </div>
@@ -223,86 +226,91 @@ new #[Layout('components.layouts.admin')] class extends Component {
 
     <!-- User Details Modal -->
     @if($showUserModal && $selectedUser)
-        <x-bladewind::modal
-            title="{{ $selectedUser->fullName() }}"
-            name="user-details"
-            show="{{ $showUserModal }}"
-            ok_button_action="closeModal"
-            ok_button_label="Close"
-            cancel_button_label=""
-        >
-            <div class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Email</div>
-                        <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->email }}</div>
+        <div class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" wire:click="closeModal"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block px-6 pt-5 pb-4 overflow-hidden text-left align-bottom bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6 border border-gray-200/60">
+                    <div class="text-xl font-semibold mb-4">{{ $selectedUser->fullName() }}</div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Email</div>
+                            <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->email }}</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Phone</div>
+                            <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->phone }}</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Location</div>
+                            <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->location ?? 'Not provided' }}</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Registration Status</div>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+                                {{ match($selectedUser->registration_status) {
+                                    'completed' => 'bg-emerald-100 text-emerald-800',
+                                    'payment_pending' => 'bg-amber-100 text-amber-800',
+                                    'approved' => 'bg-blue-100 text-blue-800',
+                                    'rejected' => 'bg-red-100 text-red-800',
+                                    default => 'bg-gray-100 text-gray-800'
+                                } }}">
+                                {{ ucfirst(str_replace('_', ' ', $selectedUser->registration_status)) }}
+                            </span>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Phone</div>
-                        <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->phone }}</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Location</div>
-                        <div class="font-medium text-gray-900 dark:text-gray-900">{{ $selectedUser->location ?? 'Not provided' }}</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Registration Status</div>
-                        <x-bladewind::tag
-                            bg_color="{{ match($selectedUser->registration_status) {
-                                'completed' => 'green',
-                                'payment_pending' => 'orange',
-                                'approved' => 'blue',
-                                'rejected' => 'red',
-                                default => 'gray'
-                            } }}"
-                            size="small"
-                        >
-                            {{ ucfirst(str_replace('_', ' ', $selectedUser->registration_status)) }}
-                        </x-bladewind::tag>
+
+                    @if($selectedUser->interests)
+                        <div class="mt-4">
+                            <div class="text-sm text-gray-500 dark:text-gray-600 mb-2">Interests</div>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach($selectedUser->interests as $interest)
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                        {{ $interest }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    @if($selectedUser->current_knowledge)
+                        <div class="mt-4">
+                            <div class="text-sm text-gray-500 dark:text-gray-600 mb-2">Current Knowledge</div>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach($selectedUser->current_knowledge as $knowledge)
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                        {{ $knowledge }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    @if($selectedUser->amount_paid > 0)
+                        <div class="mt-4">
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Payment Information</div>
+                            <div class="font-medium text-gray-900 dark:text-gray-900">Amount: MWK {{ number_format($selectedUser->amount_paid, 2) }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-600">Reference: {{ $selectedUser->payment_reference }}</div>
+                        </div>
+                    @endif
+
+                    @if($selectedUser->registration_status === 'pending')
+                        <div class="pt-4">
+                            <button
+                                onclick="$wire.updateUserStatus({{ $selectedUser->id }}, 'approved')"
+                                class="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                            >
+                                Approve Registration
+                            </button>
+                        </div>
+                    @endif
+
+                    <div class="mt-6 flex justify-end space-x-2">
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200" wire:click="closeModal">Close</button>
                     </div>
                 </div>
-
-                @if($selectedUser->interests)
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600 mb-2">Interests</div>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($selectedUser->interests as $interest)
-                                <x-bladewind::tag bg_color="gray" size="small">{{ $interest }}</x-bladewind::tag>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
-                @if($selectedUser->current_knowledge)
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600 mb-2">Current Knowledge</div>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($selectedUser->current_knowledge as $knowledge)
-                                <x-bladewind::tag bg_color="gray" size="small">{{ $knowledge }}</x-bladewind::tag>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
-                @if($selectedUser->amount_paid > 0)
-                    <div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Payment Information</div>
-                        <div class="font-medium text-gray-900 dark:text-gray-900">Amount: MWK {{ number_format($selectedUser->amount_paid, 2) }}</div>
-                        <div class="text-sm text-gray-500 dark:text-gray-600">Reference: {{ $selectedUser->payment_reference }}</div>
-                    </div>
-                @endif
-
-                @if($selectedUser->registration_status === 'pending')
-                    <div class="pt-4">
-                        <x-bladewind::button
-                            color="blue"
-                            onclick="$wire.updateUserStatus({{ $selectedUser->id }}, 'approved')"
-                        >
-                            Approve Registration
-                        </x-bladewind::button>
-                    </div>
-                @endif
             </div>
-        </x-bladewind::modal>
+        </div>
     @endif
 </div>

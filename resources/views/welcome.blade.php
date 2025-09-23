@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Spotlight Consultancy - Artisan Skills Training Program - Lilongwe, Malawi</title>
         <meta name="description" content="Professional training in graphic design, large format printing, embroidery, screen printing, and more. 6-month program by Spotlight Consultancy at Area 45, Chinsapo, Lilongwe.">
-        
+
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -74,12 +74,12 @@
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-                            Master Professional 
+                            Master Professional
                             <span class="text-blue-600 dark:text-blue-400">Artisan Skills</span>
                             in 6 Months
                         </h1>
                         <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                            Learn graphic design, large format printing, embroidery, screen printing, and business skills. 
+                            Learn graphic design, large format printing, embroidery, screen printing, and business skills.
                             Transform your future with hands-on training in Lilongwe, Malawi.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
@@ -163,7 +163,7 @@
                         A comprehensive 6-month consultancy program designed to empower artisans with practical skills and business knowledge.
                     </p>
                 </div>
-                
+
                 <div class="grid md:grid-cols-3 gap-8 mb-12">
                     <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
                         <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
@@ -174,7 +174,7 @@
                         <h3 class="text-xl font-semibold mb-2">Duration</h3>
                         <p class="text-gray-600 dark:text-gray-300">6 months of intensive hands-on training</p>
                     </div>
-                    
+
                     <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
                         <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
                             <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@
                         <h3 class="text-xl font-semibold mb-2">Location</h3>
                         <p class="text-gray-600 dark:text-gray-300">Area 45, Chinsapo, Opposite Tachira Pvt Clinic, Lilongwe</p>
                     </div>
-                    
+
                     <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
                         <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
                             <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -440,22 +440,28 @@
 
                             <hr class="border-gray-700" />
 
-                            <a 
+                            <a
                                 href="tel:+265991850017"
                                 class="text-gray-500">
                                 +265 991 850 017
                             </a>
 
-                            <a 
-                                href="mailto:sales@spotlight.ultrashots.net"
+                            <a
+                                href="tel:+265991850017"
                                 class="text-gray-500">
-                                sales@spotlight.ultrashots.net
+                                +265 991 850 017
+                            </a>
+
+                            <a
+                                href="mailto:sales@ultrashots.net"
+                                class="text-gray-500">
+                                sales@ultrashots.net
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                    <p>&copy; 2025 Spotlight Consultancy. All rights reserved.</p>
+                    <p>&copy; 2025 Spotlight Africa Communications. All rights reserved.</p>
                 </div>
             </div>
         </footer>

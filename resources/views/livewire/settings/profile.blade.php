@@ -7,7 +7,8 @@ use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public string $name = '';
+    public string $first_name = '';
+    public string $last_name = '';
     public string $email = '';
 
     /**
@@ -15,8 +16,9 @@ new class extends Component {
      */
     public function mount(): void
     {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        $this->first_name = (string) Auth::user()->first_name;
+        $this->last_name = (string) Auth::user()->last_name;
+        $this->email = (string) Auth::user()->email;
     }
 
     /**
@@ -27,8 +29,8 @@ new class extends Component {
         $user = Auth::user();
 
         $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -47,7 +49,7 @@ new class extends Component {
 
         $user->save();
 
-        $this->dispatch('profile-updated', name: $user->name);
+        $this->dispatch('profile-updated', name: $user->fullName());
     }
 
     /**
@@ -74,33 +76,56 @@ new class extends Component {
 
     <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <x-bladewind::input
+                    wire:model="first_name"
+                    :label="__('First name')"
+                    type="text"
+                    required
+                    autofocus
+                    autocomplete="given-name"
+                />
+                <x-bladewind::input
+                    wire:model="last_name"
+                    :label="__('Last name')"
+                    type="text"
+                    required
+                    autocomplete="family-name"
+                />
+            </div>
 
             <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
+                <x-bladewind::input
+                    wire:model="email"
+                    :label="__('Email')"
+                    type="email"
+                    required
+                    autocomplete="email"
+                />
 
-                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&! auth()->user()->hasVerifiedEmail())
-                    <div>
-                        <flux:text class="mt-4">
-                            {{ __('Your email address is unverified.') }}
+                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+                    <div class="mt-4 text-sm text-zinc-700 dark:text-zinc-300">
+                        {{ __('Your email address is unverified.') }}
 
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
-                                {{ __('Click here to re-send the verification email.') }}
-                            </flux:link>
-                        </flux:text>
+                        <a class="cursor-pointer text-blue-600 underline hover:no-underline dark:text-blue-400"
+                           wire:click.prevent="resendVerificationNotification">
+                            {{ __('Click here to re-send the verification email.') }}
+                        </a>
 
                         @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
+                            <div class="mt-2 font-medium text-green-600 dark:text-green-400">
                                 {{ __('A new verification link has been sent to your email address.') }}
-                            </flux:text>
+                            </div>
                         @endif
                     </div>
                 @endif
             </div>
 
             <div class="flex items-center gap-4">
-                <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
+                <div class="flex items-center justify-end w-full">
+                    <x-bladewind::button can_submit="true" uppercasing="false" class="w-full">
+                        {{ __('Save') }}
+                    </x-bladewind::button>
                 </div>
 
                 <x-action-message class="me-3" on="profile-updated">

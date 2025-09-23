@@ -150,7 +150,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             <div class="grid sm:grid-cols-2 gap-4 mb-4 min-w-0">
                 <!-- First Name -->
-                <flux:input
+                <x-bladewind::input
                     wire:model="first_name"
                     label="First Name"
                     type="text"
@@ -160,7 +160,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 />
 
                 <!-- Last Name -->
-                <flux:input
+                <x-bladewind::input
                     wire:model="last_name"
                     label="Last Name"
                     type="text"
@@ -171,7 +171,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             <div class="space-y-4">
                 <!-- Email Address -->
-                <flux:input
+                <x-bladewind::input
                     wire:model="email"
                     label="Email Address (Optional)"
                     type="email"
@@ -181,7 +181,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 />
 
                 <!-- Phone Number -->
-                <flux:input
+                <x-bladewind::input
                     wire:model="phone"
                     label="Phone Number (Required)"
                     type="tel"
@@ -335,9 +335,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         </div>
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <x-bladewind::button type="submit" class="w-full" uppercasing="false">
                 Register & Continue to Payment
-            </flux:button>
+            </x-bladewind::button>
         </div>
     </form>
 

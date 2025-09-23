@@ -24,35 +24,29 @@ new class extends Component {
 
 <section class="mt-10 space-y-6">
     <div class="relative mb-5">
-        <flux:heading>{{ __('Delete account') }}</flux:heading>
-        <flux:subheading>{{ __('Delete your account and all of its resources') }}</flux:subheading>
+        <h2 class="text-lg font-semibold">{{ __('Delete account') }}</h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-300">{{ __('Delete your account and all of its resources') }}</p>
     </div>
 
-    <flux:modal.trigger name="confirm-user-deletion">
-        <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
-            {{ __('Delete account') }}
-        </flux:button>
-    </flux:modal.trigger>
+    <x-bladewind::button
+        uppercasing="false" color="red" class="w-fit"
+        onclick="showModal('confirm-user-deletion')">
+        {{ __('Delete account') }}
+    </x-bladewind::button>
 
-    <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
-        <form method="POST" wire:submit="deleteUser" class="space-y-6">
-            <div>
-                <flux:heading size="lg">{{ __('Are you sure you want to delete your account?') }}</flux:heading>
+    <x-bladewind::modal name="confirm-user-deletion" title="{{ __('Are you sure you want to delete your account?') }}" size="small" ok_button_label="{{ __('Delete') }}" cancel_button_label="{{ __('Cancel') }}" ok_button_action="submitDeleteUser()">
+        <div class="space-y-4">
+            <p class="text-sm text-zinc-700 dark:text-zinc-300">
+                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            </p>
 
-                <flux:subheading>
-                    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-                </flux:subheading>
-            </div>
+            <x-bladewind::input wire:model="password" :label="__('Password')" type="password" />
 
-            <flux:input wire:model="password" :label="__('Password')" type="password" />
-
-            <div class="flex justify-end space-x-2 rtl:space-x-reverse">
-                <flux:modal.close>
-                    <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
-                </flux:modal.close>
-
-                <flux:button variant="danger" type="submit">{{ __('Delete account') }}</flux:button>
-            </div>
-        </form>
-    </flux:modal>
+            <script>
+                function submitDeleteUser() {
+                    window.Livewire.find(document.querySelector('[wire\\:id]').getAttribute('wire:id')).call('deleteUser');
+                }
+            </script>
+        </div>
+    </x-bladewind::modal>
 </section>

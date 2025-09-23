@@ -15,7 +15,9 @@ new #[Layout('components.layouts.admin')] class extends Component {
             'total_revenue' => User::where('registration_status', 'completed')->sum('amount_paid'),
         ];
     }
-}; ?>
+};
+?>
+
 <div>
     <div class="space-y-8">
         <!-- Header -->
