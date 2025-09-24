@@ -8,9 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('dashboard', function () {
+    // Redirect to admin dashboard for all authenticated users
+    return redirect()->route('admin.dashboard');
+})->middleware(['auth', 'verified'])
+->name('dashboard');
 
 // Checkout page - no authentication required for program registration
 Volt::route('checkout', 'checkout')->name('checkout');
@@ -145,9 +147,15 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Volt::route('/', 'admin.dashboard')->name('dashboard');
-    Volt::route('users', 'admin.users.index')->name('users.index');
-    Volt::route('users/{user}', 'admin.users.show')->name('users.show');
+    // Dashboard - now using regular controller
+    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    // User management - now using regular controller
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('users/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+    Route::patch('users/{user}/status', [\App\Http\Controllers\Admin\UserController::class, 'updateStatus'])->name('users.update-status');
+
+    // Keep Livewire for less critical components (for now)
     Volt::route('notifications', 'admin.notifications.index')->name('notifications.index');
     Volt::route('communications', 'admin.communications.index')->name('communications.index');
 });

@@ -1,29 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "mcp__laravel-boost__application-info",
-      "mcp__laravel-boost__get-absolute-url",
-      "mcp__laravel-boost__list-artisan-commands",
-      "Bash(php artisan make:migration:*)",
-      "mcp__laravel-boost__read-log-entries",
-      "Bash(where php)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan make:migration add_is_admin_to_users_table --no-interaction)",
-      "WebFetch(domain:daisyui.com)",
-      "WebSearch",
-      "Bash(composer remove:*)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan composer remove livewire/flux)",
-      "Bash(npm uninstall:*)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\composer.bat\" require mkocansey/bladewind-ui)",
-      "WebFetch(domain:bladewindui.com)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\composer.bat\" require mkocansey/bladewind)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan vendor:publish --tag=bladewind-public --force)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan vendor:publish --provider=\"Mkocansey\\Bladewind\\BladewindServiceProvider\")",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan vendor:publish --all)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan vendor:publish --tag=bladewind-lang --force)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan view:clear)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan config:clear)",
-      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan make:volt admin/users/show --test --pest)"
-    ]
+      "Bash(\"C:\\Users\\Amelia\\.config\\herd\\bin\\php.bat\" artisan route:cache)",
+      "Bash(\"C:\\Users\\ultrashots\\.config\\herd\\bin\\php.bat\" artisan make:controller Admin/UserController --no-interaction)",
+      "Bash(php artisan make:controller:*)",
+      "Bash(\"C:\\Users\\Amelia\\.config\\herd\\bin\\php.bat\" artisan make:controller Admin/UserController --no-interaction)",
+      "Bash(\"C:\\Users\\Amelia\\.config\\herd\\bin\\php.bat\" artisan make:controller Admin/DashboardController --no-interaction)"
+    ],
+    "deny": [],
+    "ask": []
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [

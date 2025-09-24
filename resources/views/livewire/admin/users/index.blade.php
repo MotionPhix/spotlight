@@ -71,36 +71,36 @@ new #[Layout('components.layouts.admin')] class extends Component {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
             </div>
-            <h1 class="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-gray-900 dark:to-gray-600">User Management</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-700 mt-2">Manage artisan course registrations and users</p>
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-white dark:to-gray-300">User Management</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mt-2">Manage artisan course registrations and users</p>
         </div>
 
         <!-- Filters -->
-        <div class="bg-white/70 dark:bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/60">
+        <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/30 dark:border-gray-700/30">
             <div class="flex items-center mb-4">
                 <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-900">Search & Filter</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Search & Filter</h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Search Users</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Search Users</label>
                     <input
                         wire:model.live.debounce.300ms="search"
                         type="text"
                         placeholder="Search by name, email, or phone..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Filter by Status</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Filter by Status</label>
                     <select
                         wire:model.live="statusFilter"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                         <option value="">All Statuses</option>
                         <option value="pending">Pending</option>
@@ -114,7 +114,7 @@ new #[Layout('components.layouts.admin')] class extends Component {
         </div>
 
         <!-- Users Table -->
-        <div class="bg-white/70 dark:bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/60 overflow-hidden">
+        <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/30 dark:border-gray-700/30 overflow-hidden">
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center">
@@ -123,14 +123,14 @@ new #[Layout('components.layouts.admin')] class extends Component {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-900">Users Directory</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Users Directory</h3>
                     </div>
-                    <div class="text-sm text-gray-500 dark:text-gray-600">{{ $this->users->total() }} total users</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">{{ $this->users->total() }} total users</div>
                 </div>
 
                 <div class="space-y-3">
                     @forelse ($this->users as $user)
-                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-50 dark:to-white rounded-xl p-4 border border-gray-200/60 hover:shadow-lg hover:scale-[1.01] transition-all duration-200">
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-600/50 rounded-xl p-4 border border-gray-200/30 dark:border-gray-600/30 hover:shadow-lg hover:scale-[1.01] transition-all duration-200">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-4 flex-1">
                                     <!-- Avatar -->
@@ -142,9 +142,9 @@ new #[Layout('components.layouts.admin')] class extends Component {
                                     <div class="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <!-- Name & Contact -->
                                         <div>
-                                            <div class="font-semibold text-gray-900 dark:text-gray-900">{{ $user->fullName() }}</div>
-                                            <div class="text-sm text-gray-600 dark:text-gray-600">{{ $user->email }}</div>
-                                            <div class="text-xs text-gray-500 dark:text-gray-500">{{ $user->phone }}</div>
+                                            <div class="font-semibold text-gray-900 dark:text-gray-100">{{ $user->fullName() }}</div>
+                                            <div class="text-sm text-gray-600 dark:text-gray-300">{{ $user->email }}</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400">{{ $user->phone }}</div>
                                         </div>
 
                                         <!-- Status -->
@@ -164,17 +164,17 @@ new #[Layout('components.layouts.admin')] class extends Component {
                                         <!-- Payment Info -->
                                         <div>
                                             @if($user->amount_paid > 0)
-                                                <div class="font-medium text-gray-900 dark:text-gray-900">MWK {{ number_format($user->amount_paid, 2) }}</div>
-                                                <div class="text-xs text-gray-500 dark:text-gray-600">{{ $user->payment_reference }}</div>
+                                                <div class="font-medium text-gray-900 dark:text-gray-100">MWK {{ number_format($user->amount_paid, 2) }}</div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">{{ $user->payment_reference }}</div>
                                             @else
-                                                <span class="text-gray-500 dark:text-gray-700">Not paid</span>
+                                                <span class="text-gray-500 dark:text-gray-400">Not paid</span>
                                             @endif
                                         </div>
 
                                         <!-- Registration Date -->
                                         <div>
-                                            <div class="text-sm text-gray-900 dark:text-gray-900">{{ $user->registered_at?->format('M j, Y') ?? 'Not registered' }}</div>
-                                            <div class="text-xs text-gray-500 dark:text-gray-600">{{ $user->created_at->diffForHumans() }}</div>
+                                            <div class="text-sm text-gray-900 dark:text-gray-100">{{ $user->registered_at?->format('M j, Y') ?? 'Not registered' }}</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400">{{ $user->created_at->diffForHumans() }}</div>
                                         </div>
                                     </div>
                                 </div>

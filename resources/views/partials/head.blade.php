@@ -14,17 +14,9 @@
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=inter:400,500,600" rel="stylesheet" />
 
-<script>
-    (function() {
-        try {
-            var mode = localStorage.getItem('theme') || 'system';
-            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var isDark = mode === 'system' ? prefersDark : mode === 'dark';
-            document.documentElement.classList.toggle('dark', isDark);
-        } catch (e) {}
-    })();
-</script>
+<!-- Theme will be handled by Stimulus theme controller -->
 
 <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+@livewireStyles
